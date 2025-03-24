@@ -1,0 +1,34 @@
+// swift-tools-version:5.9
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+
+import PackageDescription
+
+let package = Package(
+    name: "APRater",
+    platforms: [
+        .iOS(.v16)
+    ],
+    products: [
+        .library(
+            name: "APRater",
+            targets: ["APRater"]
+        )
+    ],
+    dependencies: [
+        .package(url: "https://github.com/sunshinejr/SwiftyUserDefaults.git", from: "5.0.0"),
+        .package(url: "https://github.com/SwifterSwift/SwifterSwift.git", from: "7.0.0")
+   ],
+    targets: [
+        .target(
+            name: "APRater",
+            dependencies: [
+                "SwiftyUserDefaults",
+                "SwifterSwift"
+            ]
+        ),
+        .testTarget(
+            name: "APRaterTests",
+            dependencies: ["APRater"]
+        )
+    ]
+)
