@@ -1,8 +1,6 @@
 import StoreKit
 import SwifterSwift
 import SwiftyUserDefaults
-import UIKit
-import APRater
 
 extension DefaultsKeys {
     var APRaterEventCount: DefaultsKey<Int> { .init("APRaterEventCount", defaultValue: 0) }
