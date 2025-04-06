@@ -26,5 +26,9 @@ let package = Package(
                 "SwifterSwift"
             ]
         )
-    ]
+    ],
+    .testTarget(
+        name: "APRaterTests",
+        dependencies: ["APRater"]
+    )
 )
