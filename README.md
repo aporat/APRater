@@ -1,4 +1,4 @@
-# APWebAuthentication
+# APRater
 
 
 [![Swift](https://img.shields.io/badge/Swift-5.9_5.10_6.0-orange?style=flat-square)](https://img.shields.io/badge/Swift-5.9_5.10_6.0-Orange?style=flat-square)
