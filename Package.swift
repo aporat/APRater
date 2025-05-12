@@ -25,10 +25,10 @@ let package = Package(
                 "SwiftyUserDefaults",
                 "SwifterSwift"
             ]
+        ),
+        .testTarget(
+            name: "APRaterTests",
+            dependencies: ["APRater"]
         )
-    ],
-    .testTarget(
-        name: "APRaterTests",
-        dependencies: ["APRater"]
-    )
+    ]
 )
