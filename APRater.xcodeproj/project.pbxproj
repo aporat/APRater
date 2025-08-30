@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -37,20 +37,16 @@
 /* Begin PBXFrameworksBuildPhase section */
 		537EDD0124F49F1E003DC54A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				7747FFBE2DA07E1700E074A2 /* SwiftyUserDefaults in Frameworks */,
 				77E506FD2DA2A02A007DCEB6 /* SwifterSwift in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		537EDD0A24F49F1E003DC54A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				537EDD0E24F49F1E003DC54A /* APRater.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -96,11 +92,9 @@
 /* Begin PBXHeadersBuildPhase section */
 		537EDCFF24F49F1E003DC54A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				77E506FA2DA2A017007DCEB6 /* APRater.h in Headers */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
@@ -115,8 +109,6 @@
 				537EDD0224F49F1E003DC54A /* Resources */,
 			);
 			buildRules = (
-			);
-			dependencies = (
 			);
 			name = APRater;
 			packageProductDependencies = (
@@ -141,8 +133,6 @@
 				537EDD1024F49F1E003DC54A /* PBXTargetDependency */,
 			);
 			name = APRaterTests;
-			packageProductDependencies = (
-			);
 			productName = ProgressToolbarTests;
 			productReference = 537EDD0D24F49F1E003DC54A /* APRaterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -180,7 +170,7 @@
 				7747FFBC2DA07E1700E074A2 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */,
 				77E506FB2DA2A02A007DCEB6 /* XCRemoteSwiftPackageReference "SwifterSwift" */,
 			);
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 537EDD0524F49F1E003DC54A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -194,36 +184,28 @@
 /* Begin PBXResourcesBuildPhase section */
 		537EDD0224F49F1E003DC54A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		537EDD0B24F49F1E003DC54A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		537EDD0024F49F1E003DC54A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				77E506F92DA2A017007DCEB6 /* APRater.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		537EDD0924F49F1E003DC54A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				77E507012DA2A05E007DCEB6 /* APRaterTests.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -236,7 +218,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		537EDD1624F49F1E003DC54A /* Debug */ = {
+		537EDD1624F49F1E003DC54A /* Debug configuration for PBXProject "APRater" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -302,7 +284,7 @@
 			};
 			name = Debug;
 		};
-		537EDD1724F49F1E003DC54A /* Release */ = {
+		537EDD1724F49F1E003DC54A /* Release configuration for PBXProject "APRater" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -362,7 +344,7 @@
 			};
 			name = Release;
 		};
-		537EDD1924F49F1E003DC54A /* Debug */ = {
+		537EDD1924F49F1E003DC54A /* Debug configuration for PBXNativeTarget "APRater" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -391,7 +373,7 @@
 			};
 			name = Debug;
 		};
-		537EDD1A24F49F1E003DC54A /* Release */ = {
+		537EDD1A24F49F1E003DC54A /* Release configuration for PBXNativeTarget "APRater" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -419,7 +401,7 @@
 			};
 			name = Release;
 		};
-		537EDD1C24F49F1E003DC54A /* Debug */ = {
+		537EDD1C24F49F1E003DC54A /* Debug configuration for PBXNativeTarget "APRaterTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -438,7 +420,7 @@
 			};
 			name = Debug;
 		};
-		537EDD1D24F49F1E003DC54A /* Release */ = {
+		537EDD1D24F49F1E003DC54A /* Release configuration for PBXNativeTarget "APRaterTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -462,28 +444,25 @@
 		537EDCFE24F49F1E003DC54A /* Build configuration list for PBXProject "APRater" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				537EDD1624F49F1E003DC54A /* Debug */,
-				537EDD1724F49F1E003DC54A /* Release */,
+				537EDD1624F49F1E003DC54A /* Debug configuration for PBXProject "APRater" */,
+				537EDD1724F49F1E003DC54A /* Release configuration for PBXProject "APRater" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		537EDD1824F49F1E003DC54A /* Build configuration list for PBXNativeTarget "APRater" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				537EDD1924F49F1E003DC54A /* Debug */,
-				537EDD1A24F49F1E003DC54A /* Release */,
+				537EDD1924F49F1E003DC54A /* Debug configuration for PBXNativeTarget "APRater" */,
+				537EDD1A24F49F1E003DC54A /* Release configuration for PBXNativeTarget "APRater" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		537EDD1B24F49F1E003DC54A /* Build configuration list for PBXNativeTarget "APRaterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				537EDD1C24F49F1E003DC54A /* Debug */,
-				537EDD1D24F49F1E003DC54A /* Release */,
+				537EDD1C24F49F1E003DC54A /* Debug configuration for PBXNativeTarget "APRaterTests" */,
+				537EDD1D24F49F1E003DC54A /* Release configuration for PBXNativeTarget "APRaterTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
