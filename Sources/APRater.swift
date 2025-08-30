@@ -1,6 +1,7 @@
 import StoreKit
 import SwifterSwift
 import SwiftyUserDefaults
+import UIKit
 
 extension DefaultsKeys {
     var APRaterEventCount: DefaultsKey<Int> { .init("APRaterEventCount", defaultValue: 0) }
@@ -8,76 +9,69 @@ extension DefaultsKeys {
     var APRaterInstalledDate: DefaultsKey<Date?> { .init("APRaterInstalledDate") }
 }
 
-public class APRater {
+public final class APRater {
     public static let shared = APRater()
+
     public var appId: String?
     public var usesUntilPrompt: Int = 2
     public var eventsUntilPrompt: Int = 4
     public var daysUntilPrompt: Int = 4
-    
+
     public init() {
         if Defaults.APRaterInstalledDate == nil {
             Defaults.APRaterInstalledDate = Date()
         }
-        
-        Defaults.APRaterUseCount = Defaults.APRaterUseCount + 1
+        Defaults.APRaterUseCount += 1
     }
-    
+
     public var debugDescription: String {
-        "APRater(APRaterUseCount: \(Defaults.APRaterUseCount), APRaterEventCount: \(Defaults.APRaterEventCount)"
+        "APRater(APRaterUseCount: \(Defaults.APRaterUseCount), APRaterEventCount: \(Defaults.APRaterEventCount))"
     }
-    
+
     public func logEvent() {
-        Defaults.APRaterEventCount = Defaults.APRaterEventCount + 1
+        Defaults.APRaterEventCount += 1
     }
-    
+
+    @MainActor
     public func requestReview() {
-        if shouldRequestReview {
-            if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
-                SKStoreReviewController.requestReview(in: scene)
-            }
+        guard shouldRequestReview else { return }
+        if let scene = UIApplication.shared.connectedScenes
+            .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene
+        {
+            SKStoreReviewController.requestReview(in: scene)
         }
     }
-    
+
     public var shouldRequestReview: Bool {
-        if usesUntilPrompt > 0, usesUntilPrompt > Defaults.APRaterUseCount {
+        if usesUntilPrompt > 0, Defaults.APRaterUseCount < usesUntilPrompt {
             return false
         }
-        
-        if eventsUntilPrompt > 0, eventsUntilPrompt > Defaults.APRaterEventCount {
+
+        if eventsUntilPrompt > 0, Defaults.APRaterEventCount < eventsUntilPrompt {
             return false
         }
-        
-        let installDate = Defaults.APRaterInstalledDate
-        
-        if daysUntilPrompt > 0, var currentInstallDate = installDate {
-            currentInstallDate.add(.day, value: daysUntilPrompt)
-            
-            if currentInstallDate.isInFuture {
+
+        if daysUntilPrompt > 0, let installDate = Defaults.APRaterInstalledDate {
+            let threshold = installDate.adding(.day, value: daysUntilPrompt)
+            if Date() < threshold {
                 return false
             }
         }
-        
+
         return true
     }
-    
+
+    @MainActor
     public func showInAppStore() {
-        guard let currentAppId = appId else {
-            return
-        }
-        
-        if let url = URL(string: String(format: "itms-apps://apps.apple.com/app/id%@", currentAppId)) {
-            UIApplication.shared.open(url, options: [:])
-        }
+        guard let currentAppId = appId,
+              let url = URL(string: "itms-apps://apps.apple.com/app/id\(currentAppId)") else { return }
+        UIApplication.shared.open(url, options: [:])
     }
-    
+
+    @MainActor
     public func reviewInAppStore() {
-        guard let currentAppId = appId else {
-            return
-        }
-        
-        if let url = URL(string: String(format: "itms-apps://apps.apple.com/app/id%@?action=write-review", currentAppId)) {
-            UIApplication.shared.open(url, options: [:])
-        }
+        guard let currentAppId = appId,
+              let url = URL(string: "itms-apps://apps.apple.com/app/id\(currentAppId)?action=write-review") else { return }
+        UIApplication.shared.open(url, options: [:])
     }
 }
