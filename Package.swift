@@ -16,7 +16,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/sunshinejr/SwiftyUserDefaults.git", from: "5.3.0"),
-        .package(url: "https://github.com/SwifterSwift/SwifterSwift.git", from: "7.0.0")
+        .package(url: "https://github.com/SwifterSwift/SwifterSwift.git", from: "8.0.0")
     ],
     targets: [
         .target(
