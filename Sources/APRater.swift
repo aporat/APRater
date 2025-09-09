@@ -1,6 +1,6 @@
 import StoreKit
 import SwifterSwift
-import SwiftyUserDefaults
+@preconcurrency import SwiftyUserDefaults
 import UIKit
 
 extension DefaultsKeys {
@@ -9,8 +9,9 @@ extension DefaultsKeys {
     var APRaterInstalledDate: DefaultsKey<Date?> { .init("APRaterInstalledDate") }
 }
 
+@MainActor
 public final class APRater {
-    public static let shared = APRater()
+    @MainActor public static let shared = APRater()
 
     public var appId: String?
     public var usesUntilPrompt: Int = 2
