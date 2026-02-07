@@ -1,14 +1,13 @@
-import XCTest
 @testable import APRater
-@preconcurrency import SwiftyUserDefaults
 import SwifterSwift
+@preconcurrency import SwiftyUserDefaults
+import XCTest
 
 @MainActor
 final class APRaterTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        // Reset persisted values so each test is deterministic
         Defaults[\.APRaterUseCount] = 0
         Defaults[\.APRaterEventCount] = 0
         Defaults[\.APRaterInstalledDate] = nil
@@ -21,19 +20,18 @@ final class APRaterTests: XCTestCase {
         super.tearDown()
     }
 
-    // MARK: - Init side effect
+    // MARK: - Init
 
     func testInitIncrementsUseCount() {
         XCTAssertEqual(Defaults[\.APRaterUseCount], 0)
-        _ = APRater() // init should set install date (if nil) and +1 use
+        _ = APRater()
         XCTAssertEqual(Defaults[\.APRaterUseCount], 1)
         XCTAssertNotNil(Defaults[\.APRaterInstalledDate])
     }
 
-    // MARK: - Uses gate
+    // MARK: - Uses Gate
 
     func testShouldRequestReview_UsesGate() {
-        // Disable other gates
         Defaults[\.APRaterInstalledDate] = Date().adding(.day, value: -30)
 
         let rater = APRater()
@@ -50,7 +48,7 @@ final class APRaterTests: XCTestCase {
         XCTAssertTrue(rater.shouldRequestReview)
     }
 
-    // MARK: - Events gate
+    // MARK: - Events Gate
 
     func testShouldRequestReview_EventsGate() {
         Defaults[\.APRaterInstalledDate] = Date().adding(.day, value: -30)
@@ -71,7 +69,7 @@ final class APRaterTests: XCTestCase {
         XCTAssertTrue(rater.shouldRequestReview)
     }
 
-    // MARK: - Days gate
+    // MARK: - Days Gate
 
     func testShouldRequestReview_DaysGate() {
         Defaults[\.APRaterUseCount] = 0
@@ -89,7 +87,7 @@ final class APRaterTests: XCTestCase {
         XCTAssertTrue(rater.shouldRequestReview, "Should be true after threshold date")
     }
 
-    // MARK: - Combined gates
+    // MARK: - Combined Gates
 
     func testShouldRequestReview_AllGatesMustPass() {
         Defaults[\.APRaterInstalledDate] = Date()
@@ -113,7 +111,7 @@ final class APRaterTests: XCTestCase {
         XCTAssertTrue(rater.shouldRequestReview)
     }
 
-    // MARK: - Debug string
+    // MARK: - Debug Description
 
     func testDebugDescriptionContainsCounts() {
         Defaults[\.APRaterUseCount] = 5

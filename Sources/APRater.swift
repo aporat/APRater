@@ -3,20 +3,29 @@ import SwifterSwift
 @preconcurrency import SwiftyUserDefaults
 import UIKit
 
+// MARK: - UserDefaults Keys
+
 extension DefaultsKeys {
     var APRaterEventCount: DefaultsKey<Int> { .init("APRaterEventCount", defaultValue: 0) }
     var APRaterUseCount: DefaultsKey<Int> { .init("APRaterUseCount", defaultValue: 0) }
     var APRaterInstalledDate: DefaultsKey<Date?> { .init("APRaterInstalledDate") }
 }
 
+// MARK: - APRater
+
 @MainActor
-public final class APRater {
-    @MainActor public static let shared = APRater()
+public final class APRater: CustomDebugStringConvertible {
+
+    public static let shared = APRater()
+
+    // MARK: Configuration
 
     public var appId: String?
     public var usesUntilPrompt: Int = 2
     public var eventsUntilPrompt: Int = 4
     public var daysUntilPrompt: Int = 4
+
+    // MARK: Lifecycle
 
     public init() {
         if Defaults.APRaterInstalledDate == nil {
@@ -25,15 +34,18 @@ public final class APRater {
         Defaults.APRaterUseCount += 1
     }
 
-    public var debugDescription: String {
-        "APRater(APRaterUseCount: \(Defaults.APRaterUseCount), APRaterEventCount: \(Defaults.APRaterEventCount))"
+    // MARK: Public
+
+    public nonisolated var debugDescription: String {
+        MainActor.assumeIsolated {
+            "APRater(APRaterUseCount: \(Defaults.APRaterUseCount), APRaterEventCount: \(Defaults.APRaterEventCount))"
+        }
     }
 
     public func logEvent() {
         Defaults.APRaterEventCount += 1
     }
 
-    @MainActor
     public func requestReview() {
         guard shouldRequestReview else { return }
         if let scene = UIApplication.shared.connectedScenes
@@ -62,14 +74,12 @@ public final class APRater {
         return true
     }
 
-    @MainActor
     public func showInAppStore() {
         guard let currentAppId = appId,
               let url = URL(string: "itms-apps://apps.apple.com/app/id\(currentAppId)") else { return }
         UIApplication.shared.open(url, options: [:])
     }
 
-    @MainActor
     public func reviewInAppStore() {
         guard let currentAppId = appId,
               let url = URL(string: "itms-apps://apps.apple.com/app/id\(currentAppId)?action=write-review") else { return }
